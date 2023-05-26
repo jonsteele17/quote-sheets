@@ -21,17 +21,12 @@
 </head>
 <body>
 
-  <div class="container-fluid" id="formContainer">
-    <form id="newContainerForm">
+  <div class="container-fluid" id="formTab">
+    <form id="newTabForm">
       <div class="input-group">
-        <span class="input-group-text" id="containerNumber">Container #:</span>
-        <input type="text" class="form-control" id="newContainerName" name="newContainerName">
+        <span class="input-group-text" id="tabName">Customer Name:</span>
+        <input type="text" class="form-control" id="newTabName" name="newTabName">
       </div>
-      <div class="input-group">
-        <span class="input-group-text" id="bolNumber">BOL #:</span>
-        <input type="text" class="form-control" id="newBOLName" name="newBOLName">
-      </div>
-    <br>
     <div class="container-sm">
       <input type="button" class="formButtons, btn btn-success" value="Add" onclick="submitForm(); google.script.host.close();">
       <input type="button" class="formButtons, btn btn-secondary" value="Cancel" onclick="google.script.host.close();">
@@ -42,8 +37,8 @@
 
 <script>
 function submitForm() {
-            google.script.run.duplicate(document.getElementById("newContainerForm"));
-            document.getElementById("formContainer").style.display = "none";
+            google.script.run.duplicate(document.getElementById("newTabForm"));
+            document.getElementById("formTab").style.display = "none";
         }
 </script>
 

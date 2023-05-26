@@ -1,46 +1,15 @@
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu("Menu")
-    .addItem("Add Customer", "addPrompt")
     .addItem("New Sheet", "addNewSheet")
     .addSeparator()
-    .addItem("Clear Current Sheet", "clearPrompt")
+    .addItem("Clear Current Sheet", "clear")
     .addToUi();
-}
-
-//Add Customer Prompt
-function addPrompt() {
-  var form = HtmlService.createHtmlOutputFromFile("index.html")
-    .setWidth(400)
-    .setHeight(475);
-  SpreadsheetApp.getUi().showModalDialog(form, "Add New Customer");
-}
-
-//Add Customer onClick function
-function addCustomer(form) {
-  var row = [
-    form.customerName,
-    form.customerID,
-    form.streetAddress,
-    form.streetAddress2,
-    form.city,
-    form.state,
-    form.zipCode,
-    form.phoneNumber,
-    form.emailAddress,
-    form.companyName,
-    form.term,
-    form.customerRep,
-    form.customerType,
-    form.commissionType,
-    form.priceList,
-  ];
-  SpreadsheetApp.getActive().getSheetByName("New_Customers").appendRow(row);
 }
 
 //Add New Sheet Prompt
 function addNewSheet() {
-  var addSheet = HtmlService.createHtmlOutputFromFile("newSheet.html")
+  var addSheet = HtmlService.createHtmlOutputFromFile("index.html")
     .setWidth(400)
     .setHeight(100);
   SpreadsheetApp.getUi().showModalDialog(addSheet, "Add New Sheet");
@@ -60,16 +29,8 @@ function duplicate() {
   clearInvoice();
 }
 
-//Clear Contents Prompt
-function clearPrompt() {
-  var clear = HtmlService.createHtmlOutputFromFile("clear.html")
-    .setWidth(550)
-    .setHeight(100);
-  SpreadsheetApp.getUi().showModalDialog(clear, "Clear Current Sheet");
-}
-
 //Clear Sheet onClick function
-function clearInvoice() {
+function clear() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet();
   var date = new Date();
   var month = date.getMonth();
