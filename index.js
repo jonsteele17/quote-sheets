@@ -16,17 +16,19 @@ function addNewSheet() {
 }
 
 //Add New Sheet onClick function (Duplicate Template Sheet)
-function duplicate() {
-  var ss = "Template";
+function duplicate(formData) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var templateSheet = ss.getSheetByName("Template");
 
-  SpreadsheetApp.getActive().getSheetByName(ss).showSheet();
-  SpreadsheetApp.setActiveSheet(
-    SpreadsheetApp.getActive().getSheetByName(ss),
-    true
-  );
-  SpreadsheetApp.getActiveSpreadsheet().duplicateActiveSheet();
-  SpreadsheetApp.getActive().getSheetByName(ss).hideSheet();
-  clearInvoice();
+  if (formData.newTabName == "") {
+    ss.insertSheet(formData.newTabName, { template: templateSheet });
+    templateSheet.hideSheet();
+    ss.getSheetByName(formData.newTabName).getRange("D2").setValue("Paducah");
+    ss.getSheetByName(formData.newTabName).activate();
+    ss.moveActiveSheet(1);
+  } else {
+    return;
+  }
 }
 
 //Clear Sheet onClick function
